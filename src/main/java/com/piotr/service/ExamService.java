@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface ExamService {
     List<Exam> findAll();
+   Exam findOne(Long examid); // definicja metody  1 2 3 , 1 typ zwracany , nazwa , lista paramentru
 }

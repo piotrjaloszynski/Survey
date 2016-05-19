@@ -21,7 +21,7 @@ import java.util.List;
 
 
 @Controller
-public class AnswerController {
+public class ClosedAnswerController {
 
     /*
 @Autowired

@@ -20,5 +20,14 @@ public class ExamServiceImpl implements ExamService {
     @Override
     public List<Exam> findAll() {
         return examDao.findAll();
+
+
     }
+
+    @Override
+    public Exam findOne(Long examid){
+        return examDao.findOne(examid);
+
+    }
+
 }

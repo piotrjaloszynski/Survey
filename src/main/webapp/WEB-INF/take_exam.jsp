@@ -1,16 +1,12 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:url value="/take-exam" var ="takeURL"/>
-
 <%--
   Created by IntelliJ IDEA.
   User: jalos
-  Date: 02.05.2016
-  Time: 12:11
+  Date: 12.05.2016
+  Time: 11:54
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <link rel="stylesheet" href="Main.css">
     <meta charset="UTF-8">
@@ -29,32 +25,9 @@
 
 
 </head>
+<body>
 <body style="background-color:lightgrey;">
+<h1 align="center">take-exam</h1>
 
-<h1 align="center">Exam</h1>
-
-
-
-
-<c:forEach items="${ExamsList}" var="exam">
-    Exam:${exam.nameOfExam} <a href="${takeURL}/${exam.id}">Take exam</a><br><br>
-
-
-</c:forEach>
-
-        <br />
-        <p>Please enter your comment:</p>
-<form action="" method="POST">
-
-        <textarea name="Komentarz" cols="50" rows="10" placeholder="Please enter your comments for your line manager."></textarea>
-        <br /><br /><br />
-        <p>Please enter your email:
-            <textarea name="Komentarz" cols="0,5" rows="1"> </textarea>
-            <!-- Przycisk WYŚLIJ -->
-            <input type="submit" value="Submit" />
-            <!-- Przycisk WYCZYŚĆ DANE -->
-            <input type="reset" value="Clear" />
-    </form>
-
-    </body>
+</body>
 </html>

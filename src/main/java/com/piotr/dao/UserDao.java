@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
     @Repository
     public interface UserDao  extends JpaRepository<User,Long> {
-
+    User findByEmail (String email);
     }
 
+//http://docs.spring.io/spring-data/jpa/docs/1.10.1.RELEASE/reference/html/#jpa.query-methods

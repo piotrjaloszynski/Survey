@@ -24,7 +24,37 @@ public class Answer extends BaseEntity {
     private String isWrong;
 
 
+    public String getAnswerContent() {
+        return answerContent;
+    }
 
+    public void setAnswerContent(String answerContent) {
+        this.answerContent = answerContent;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    public String getIsCorrect() {
+        return isCorrect;
+    }
+
+    public void setIsCorrect(String isCorrect) {
+        this.isCorrect = isCorrect;
+    }
+
+    public String getIsWrong() {
+        return isWrong;
+    }
+
+    public void setIsWrong(String isWrong) {
+        this.isWrong = isWrong;
+    }
 }
 
 
