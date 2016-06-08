@@ -2,9 +2,13 @@ package com.piotr.controller;
 
 import com.piotr.model.Answer;
 import com.piotr.model.Result;
+import com.piotr.model.User;
 import com.piotr.service.AnswerService;
 import com.piotr.service.ResultService;
+import com.piotr.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +24,30 @@ import java.util.List;
  */
 @Controller
 public class ResultController {
+@Autowired ResultService resultService;
+    @Autowired
+    UserService userService;
+    ///result/98
+    @RequestMapping(value="/result",method=RequestMethod.GET)
+    public String getResultView(
+            @RequestParam(value = "examId") Long examId,
+            Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        User user= userService.findByEmail(name);
+        Result result=resultService.findByExamIdAndUserId(examId, user.getId());
+
+        double score = resultService.calculateScore(user.getId(), examId); // TODO: policzyc score
+
+
+        result.setScore(score);
+
+        model.addAttribute("result",result);
+        return "Result";
+    }
+
+}
+
 /*
     @Autowired
     private ResultService resultService;
@@ -80,6 +108,6 @@ public class ResultController {
         return "redirect:/resultsListServletMapping";
 
     }
-    */}
+    }
 
-
+*/

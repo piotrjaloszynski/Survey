@@ -10,5 +10,7 @@ import java.util.List;
  */
 public interface ResultService {
     void save(Result result);
+ Result findByExamIdAndUserId(Long examId,Long userId);
+   double calculateScore(Long userId,Long examId );
 
 }

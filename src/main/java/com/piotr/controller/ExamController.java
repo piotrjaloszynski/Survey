@@ -9,6 +9,8 @@ import com.piotr.service.QuestionService;
 import com.piotr.service.ResultService;
 import com.piotr.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,10 +48,12 @@ public class ExamController {
         List<Question> questions = questionService.findByExamId(examId);
         model.addAttribute("question",questions.get(0));
         Result result= new Result();
-        User user= userService.findOne(1L);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        User user= userService.findByEmail(name);
         result.setExam(exam);
         result.setUser(user);
-        resultService.save(result);
+        resultService.save(result);//24.05.2016
         return "Question";
 
 

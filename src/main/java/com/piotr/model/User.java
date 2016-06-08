@@ -31,7 +31,7 @@ public class User extends BaseEntity {
     private String position;
 
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user")// nazwa klasy
     private List<Result> results;
 
     @OneToMany(mappedBy = "user") // z reguly nazwa klasy .

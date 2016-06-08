@@ -16,4 +16,6 @@ public interface QuestionService {
 
     List<Question> findByExamId(Long examId);
 
+    Question nextQuestion(Long questionId,Long examId);
+
 }

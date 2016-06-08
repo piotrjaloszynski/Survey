@@ -50,5 +50,24 @@ return questions;
 
     }
 
+    @Override
+    public Question nextQuestion(Long questionId, Long examId) {
+        List<Question> questions = questionDao.findByExamId(examId);
+        for (int i = 0; i < questions.size(); i++) {
+            if (questionId.equals(questions.get(i).getId())) {
+
+                if ( (i+1) < questions.size()) {
+                    return questions.get(i + 1);
+                }
+
+            }
+
+        }
+        return null;
+    }
 
 }
+
+
+
+

@@ -9,4 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public interface UserService extends UserDetailsService {
     User findOne(Long id);
 
+    User findByEmail(String name);
+
 }

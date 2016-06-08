@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
     @Repository
     public interface ResultDao  extends JpaRepository<Result,Long> {
+Result findByExamIdAndUserId(Long examId,Long userId);
 
     }
 

@@ -33,6 +33,10 @@ public class UserServiceImpl implements UserService {
         return userDao.findOne(id); // zmienna zawsze odnosi sie do metod , musimy miec referencje czyli zmienna
 
     }
+    @Override
+    public User findByEmail(String name){
+    return userDao.findByEmail(name);
+    }
 
 
 }

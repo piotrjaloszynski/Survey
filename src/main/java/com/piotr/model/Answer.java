@@ -18,10 +18,10 @@ public class Answer extends BaseEntity {
     private String answerContent;
 
     @Column(name="isCorrect")
-    private String isCorrect;
+    private Boolean isCorrect;
 
     @Column(name="isWrong")
-    private String isWrong;
+    private Boolean isWrong;
 
 
     public String getAnswerContent() {
@@ -40,19 +40,19 @@ public class Answer extends BaseEntity {
         this.question = question;
     }
 
-    public String getIsCorrect() {
+    public Boolean getIsCorrect() {
         return isCorrect;
     }
 
-    public void setIsCorrect(String isCorrect) {
+    public void setIsCorrect(Boolean isCorrect) {
         this.isCorrect = isCorrect;
     }
 
-    public String getIsWrong() {
+    public Boolean getIsWrong() {
         return isWrong;
     }
 
-    public void setIsWrong(String isWrong) {
+    public void setIsWrong(Boolean isWrong) {
         this.isWrong = isWrong;
     }
 }
