@@ -10,7 +10,7 @@
 </head>
 <body style="background-color:lightgrey;">
 
-<p> Closed questions securities</p>
+<p> ${question.questionContent} ${question.id} of ${questionNumber}  </p>
 
 <p>${question.questionContent}</p>
 <form action="${saveQuestionURL}" method="POST">

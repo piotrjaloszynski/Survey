@@ -57,6 +57,7 @@ QuestionService questionService;
         User user= userService.findByEmail(name);
        answerGivenService.saveAllAnswers(user.getId(),questionId,answers);
 
+        model.addAttribute("questionNumber", 10); //todo zmienic wartosc na prawidlowa
         Question question=questionService.nextQuestion(questionId,examId);
         if(question==null){
             model.addAttribute("examId", examId);

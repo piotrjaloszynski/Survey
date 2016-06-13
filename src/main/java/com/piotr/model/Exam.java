@@ -15,7 +15,7 @@ public class Exam extends BaseEntity {
     @Column(name="nameOfExam")
     private String nameOfExam;
     @Column (name="passRate")
-    private String passRate;
+    private double passRate;
 @OneToMany(mappedBy = "exam")
     private List<Result> results;
 @OneToMany(mappedBy = "exam")
@@ -31,11 +31,11 @@ public class Exam extends BaseEntity {
         this.nameOfExam = nameOfExam;
     }
 
-    public String getPassRate() {
+    public double getPassRate() {
         return passRate;
     }
 
-    public void setPassRate(String passRate) {
+    public void setPassRate(double passRate) {
         this.passRate = passRate;
     }
 

@@ -14,8 +14,34 @@
 </head>
 <body style="background-color:lightgrey;">
 <h1 align="center">Result</h1>
-<P>Congratulations!
-You made ${result.score}% of correct answers to pass the test.Your knowledge is sufficient to provide the derivative sales to the Retail clients.
+
+<c:choose>
+    <c:when test="${examPassed == true}">
+        <P>Congratulations!</P>
+        You made ${result.score}% of correct answers to pass the test.
+        Your knowledge is sufficient to provide the ${exam.nameOfExam}  sales to the Retail clients.
+    </c:when>
+    <c:otherwise>
+        <p>You failed!</p>
+        You made ${result.score}% of correct answers to fail the test.
+        Your knowledge is unsufficient to provide the ${exam.nameOfExam} sales to the Retail clients.
+
+    </c:otherwise>
+</c:choose>
+    <%--< wersja za pomoca taga c:choose--%>
+   <%--< wersja warukowego wyknania kodu za pomoca taga c:if--%>
+<%--<c:if test="${examPassed == true}">--%>
+<%--<P>Congratulations!</P>--%>
+<%--You made ${result.score}% of correct answers to pass the test.--%>
+    <%--Your knowledge is sufficient to provide the ${exam.nameOfExam}  sales to the Retail clients.--%>
+<%--</c:if>--%>
+
+<%--<c:if test="${examPassed == false}">--%>
+<%--<p>You failed!</p>--%>
+    <%--You made ${result.score}% of correct answers to fail the test.--%>
+    <%--Your knowledge is unsufficient to provide the ${exam.nameOfExam} sales to the Retail clients.--%>
+
+<%--</c:if>--%>
 
 <p>How difficult was the questionaire?</p>
 <input type="radio" name="Wiek" value="very easy" />1 very easy <br/>
@@ -30,7 +56,6 @@ You made ${result.score}% of correct answers to pass the test.Your knowledge is 
 <input type="submit" value="Submit" />
 <!-- Przycisk WYCZYŚĆ DANE -->
 <input type="reset" value="Clear" />
-</P>
 
 
 
