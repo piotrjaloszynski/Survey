@@ -1,5 +1,6 @@
 package com.piotr.controller;
 
+import com.piotr.dto.ExamUserResult;
 import com.piotr.model.Exam;
 import com.piotr.model.Question;
 import com.piotr.model.Result;
@@ -37,7 +38,13 @@ public class ExamController {
     @RequestMapping(value = {"/","/exams"}, method = RequestMethod.GET)
     public String getExamListView(Model model) {
         List<Exam> exams = examService.findAll();
-        model.addAttribute("ExamsList", exams);
+        //model.addAttribute("ExamsList", exams);
+        User user= userService.getLoggedUser();
+
+        List<Result> results=resultService.findByUserId(user.getId());
+
+        List<ExamUserResult> userResults = resultService.getListUserResults(exams, results);
+        model.addAttribute("ExamsList", userResults);
         return "exam-list";
 
 
@@ -48,9 +55,8 @@ public class ExamController {
         List<Question> questions = questionService.findByExamId(examId);
         model.addAttribute("question",questions.get(0));
         Result result= new Result();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
-        User user= userService.findByEmail(name);
+
+        User user= userService.getLoggedUser();
         result.setExam(exam);
         result.setUser(user);
         resultService.save(result);//24.05.2016

@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:url value="/take-exam" var ="takeURL"/>
+<c:url value="/take-exam" var="takeURL"/>
 
 <%--
   Created by IntelliJ IDEA.
@@ -34,27 +34,50 @@
 <h1 align="center">Exam</h1>
 
 
-
-
 <c:forEach items="${ExamsList}" var="exam">
-    Exam:${exam.nameOfExam} <a href="${takeURL}/${exam.id}">Take exam</a><br><br>
+    Exam:${exam.examName}
 
 
+    <c:choose>
+        <c:when test="${exam.status eq 'take'}">
+            <!-- opcja 1 wez udzial w egzaminie -->
+            <a href="${takeURL}/${exam.examId}">Take exam</a><br><br>
+
+
+        </c:when>
+        <c:when test="${exam.status eq 'continue'}">
+            <!-- opcja 2 egzamin in progress -->
+            <a href="">continue</a>
+        </c:when>
+        <c:otherwise>
+            <!-- opcja 3 (a) egzamin zdany lub (b) niezdany -->
+            <c:choose>
+                <c:when test="${exam.status eq 'pass'}">
+                    <!--zdany-->
+                    Passed
+
+                </c:when>
+                <c:otherwise>
+                    <!--niezdany-->
+                    Failed
+                </c:otherwise>
+            </c:choose>
+        </c:otherwise>
+    </c:choose>
 </c:forEach>
+    <br />
+    <p>Please enter your comment:</p>
+    <form action="" method="POST">
 
-        <br />
-        <p>Please enter your comment:</p>
-<form action="" method="POST">
-
-        <textarea name="Komentarz" cols="50" rows="10" placeholder="Please enter your comments for your line manager."></textarea>
-        <br /><br /><br />
-        <p>Please enter your email:
-            <textarea name="Komentarz" cols="0,5" rows="1"> </textarea>
-            <!-- Przycisk WYŚLIJ -->
-            <input type="submit" value="Submit" />
-            <!-- Przycisk WYCZYŚĆ DANE -->
-            <input type="reset" value="Clear" />
+    <textarea name="Komentarz" cols="50" rows="10" placeholder="Please enter your comments for your line manager."></textarea>
+    <br /><br /><br />
+    <p>Please enter your email:
+    <textarea name="Komentarz" cols="0,5" rows="1"> </textarea>
+    <!-- Przycisk WYŚLIJ -->
+    <input type="submit" value="Submit" />
+    <!-- Przycisk WYCZYŚĆ DANE -->
+    <input type="reset" value="Clear" />
     </form>
 
     </body>
-</html>
+    </html>
