@@ -47,19 +47,19 @@
         </c:when>
         <c:when test="${exam.status eq 'continue'}">
             <!-- opcja 2 egzamin in progress -->
-            <a href="">continue</a>
+            <a href="">continue</a><br><br>
         </c:when>
         <c:otherwise>
             <!-- opcja 3 (a) egzamin zdany lub (b) niezdany -->
             <c:choose>
                 <c:when test="${exam.status eq 'pass'}">
                     <!--zdany-->
-                    Passed
-
+                    Passed<br><br>
+            
                 </c:when>
                 <c:otherwise>
                     <!--niezdany-->
-                    Failed
+                    Failed<br><br>
                 </c:otherwise>
             </c:choose>
         </c:otherwise>
