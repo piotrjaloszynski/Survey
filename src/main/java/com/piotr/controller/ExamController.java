@@ -61,9 +61,20 @@ public class ExamController {
         result.setUser(user);
         resultService.save(result);//24.05.2016
         return "Question";
+}
 
-
-
+    @RequestMapping(value="/show-exam-summary/{id}",method=RequestMethod.GET)
+    public String showExamSummary(@PathVariable("id")Long examId, Model model) {
+    //List<Exam> exams=examService.findAll();
+      //      User user=userService.
+    User user= userService.getLoggedUser();
+        model.addAttribute("userFullName",user.getFullName());
+        Result result= resultService.findByExamIdAndUserId(examId, user.getId());
+       model.addAttribute("correctAnswers",result.getCorrectAnswers());
+       model.addAttribute("inCorrectAnswers",result.getInCorrectAnswers());
+        //Answer answer=resultService.findCorrectAnswers(exanmId,user.getId());
+        model.addAttribute("examScore",result.getScore());
+        return "exam-summary";
 
 }
 

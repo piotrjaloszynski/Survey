@@ -41,9 +41,10 @@ public class ResultController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         User user = userService.findByEmail(name);
+        double score = resultService.calculateScore(user.getId(), examId); // TODO: policzyc score
+
         Result result = resultService.findByExamIdAndUserId(examId, user.getId());
         Exam exam =examService.findOne(examId);
-        double score = resultService.calculateScore(user.getId(), examId); // TODO: policzyc score
 
         result.setScore(score);
         resultService.save(result);

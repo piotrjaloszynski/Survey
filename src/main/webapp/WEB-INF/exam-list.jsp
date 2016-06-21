@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:url value="/take-exam" var="takeURL"/>
-
+<c:url value="/show-exam-summary" var="showExamSummaryURL"/>
 <%--
   Created by IntelliJ IDEA.
   User: jalos
@@ -54,12 +54,13 @@
             <c:choose>
                 <c:when test="${exam.status eq 'pass'}">
                     <!--zdany-->
-                    Passed<br><br>
-            
+              <a href="${showExamSummaryURL}/${exam.examId}">Passed</a><br><br>
+
                 </c:when>
                 <c:otherwise>
                     <!--niezdany-->
-                    Failed<br><br>
+                    <a href="${showExamSummaryURL}/${exam.examId}">Failed</a><br><br>
+
                 </c:otherwise>
             </c:choose>
         </c:otherwise>

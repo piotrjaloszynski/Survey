@@ -39,7 +39,7 @@
     </c:when>
     <c:otherwise>
         <p>You failed!</p>
-        You made ${result.score}% of correct answers to fail the test.
+        You made ${result.score}% of correct answers and failed the test.
         Your knowledge is unsufficient to provide the ${exam.nameOfExam} sales to the Retail clients.
 
     </c:otherwise>

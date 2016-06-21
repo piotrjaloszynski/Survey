@@ -16,6 +16,27 @@ public class Result extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+@Column(name="correctAnswers")
+  private Integer correctAnswers;
+
+    @Column (name="inCorrectAnswers")
+    private Integer inCorrectAnswers;
+
+    public Integer getCorrectAnswers() {
+        return correctAnswers;
+    }
+
+    public void setCorrectAnswers(Integer correctAnswers) {
+        this.correctAnswers = correctAnswers;
+    }
+
+    public Integer getInCorrectAnswers() {
+        return inCorrectAnswers;
+    }
+
+    public void setInCorrectAnswers(Integer inCorrectAnswers) {
+        this.inCorrectAnswers = inCorrectAnswers;
+    }
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "exam_id")

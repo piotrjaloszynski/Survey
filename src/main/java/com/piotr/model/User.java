@@ -100,5 +100,10 @@ public class User extends BaseEntity {
     public void setSurveys(List<Survey> surveys) {
         this.surveys = surveys;
     }
+ public String getFullName(){
+
+     return name+" "+ surname;
+ }
 }
+
 // pozycje wypisujemy jako wartosc konkretna staff ,, itd

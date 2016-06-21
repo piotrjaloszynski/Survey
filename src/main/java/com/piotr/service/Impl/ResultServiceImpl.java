@@ -88,6 +88,7 @@ public class ResultServiceImpl implements ResultService {
     public double calculateScore(Long userId,Long examId ){
         double score;
         int correctAnswers = 0;
+        int inCorrectAnswers=0;
     List<Question> questionList=questionService.findByExamId(examId);
         for(Question question: questionList){
             List<Answer> answers = question.getAnswers();
@@ -111,8 +112,22 @@ public class ResultServiceImpl implements ResultService {
 
             if (questionOk) {
                 correctAnswers++;
+            } else {
+                inCorrectAnswers++;
             }
+
         }
+
+        Result result=findByExamIdAndUserId(examId, userId);
+        result.setCorrectAnswers(correctAnswers);
+       result.setInCorrectAnswers(inCorrectAnswers);
+        save(result);
+
+        //2.opcj result.setInCorrectAnswers(questionList.size() - correctAnswers);
+
+        // pobrac z bazy result dla userID i examId
+        // ustawic temu resultowi correctAnswers
+        // ustawic rsultowi ilosc blednych odpowiedzi
 
         // musimy miec liste wszystkich pytan dla egzaminu o examID
 
