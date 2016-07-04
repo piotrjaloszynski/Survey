@@ -54,6 +54,7 @@ public class ExamController {
         Exam exam = examService.findOne(examId);
         List<Question> questions = questionService.findByExamId(examId);
         model.addAttribute("question",questions.get(0));
+        model.addAttribute("allQuestionNumbers",questions.size());
         Result result= new Result();
 
         User user= userService.getLoggedUser();

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -31,13 +32,6 @@ QuestionService questionService;
     AnswerGivenService answerGivenService;
 @Autowired
     UserService userService;
-    @RequestMapping(value = "/save-question", method = RequestMethod.POST)
-    public String saveQuestion(
-
-            @RequestParam Long id,
-            @RequestParam("answers") String[] answers) {
-        return "redirect:/question/" + id; // tzn ze przekieruje do kolejnego pytania
-    }
 
     @RequestMapping(value = "/question/{id}", method = RequestMethod.GET)
 
@@ -48,16 +42,18 @@ QuestionService questionService;
     }
     @RequestMapping(value="/next-question",method= RequestMethod.POST)
     public String nextQuestionView(
- @RequestParam(name="questionId")Long questionId,
-       @RequestParam(name="examId")Long examId,
-            @RequestParam ("answers")Long [] answers, Model model){
+            @RequestParam(name="questionId")Long questionId,
+            @RequestParam(name="examId")Long examId,
+            @RequestParam ("answers")Long [] answers, Model model,
+            RedirectAttributes redirectAttributes){
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         User user= userService.findByEmail(name);
        answerGivenService.saveAllAnswers(user.getId(),questionId,answers);
+        List<Question> questions=questionService.findByExamId(examId);
+        redirectAttributes.addFlashAttribute("allQuestionNumber",questions.size() );
 
-        model.addAttribute("questionNumber", 10); //todo zmienic wartosc na prawidlowa
         Question question=questionService.nextQuestion(questionId,examId);
         if(question==null){
             model.addAttribute("examId", examId);

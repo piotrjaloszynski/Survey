@@ -10,7 +10,7 @@
 </head>
 <body style="background-color:lightgrey;">
 
-<p> ${question.questionContent} ${question.id} of ${questionNumber}  </p>
+<p> Question ${questionNumber} of ${allQuestionNumber}  </p>
 
 <p>${question.questionContent}</p>
 <form action="${saveQuestionURL}" method="POST">
