@@ -1,19 +1,19 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:url value="/exams" var="examsURL"/>
-
 <%--
   Created by IntelliJ IDEA.
   User: jalos
-  Date: 17.06.2016
-  Time: 12:11
+  Date: 05.07.2016
+  Time: 11:34
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:url value="/exam-history" var="examsURL"/>
 <html>
 <head>
     <link rel="stylesheet" href="Main.css">
     <meta charset="UTF-8">
-    <title>Title</title>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -21,67 +21,44 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
           integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="/resources/css/main.css"/>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
             crossorigin="anonymous"></script>
 
 
-</head>
-<body style="background-color:lightgrey;">
-<div class="container">
 
-</div>
-<h1 align="center">Exam summary</h1>
+
+    <title>Table of all exams</title>
+</head>
+<body>
+<body style="background-color:lightgrey;">
+<h1 align="center">exam-history</h1>
 <table class="table">
     <tr>
         <td>
-Imie Nazwisko
+            Exam name:
+        </td>
+
+        <td>
+            result:
+
         </td>
         <td>
-${userFullName}
-
+            When taken:
         </td>
-
     </tr>
+    <c:forEach items="${results}" var="result" >
     <tr>
-        <td>
-Correct answers
-        </td>
-        <td>
-${correctAnswers}
-
-        </td>
+     <td>${result.exam.nameOfExam}</td>
+        <td>${result.score}</td>
+        <td>${result.user.getFullName()}</td>
 
     </tr>
-    <tr>
-   <td>
-Incorrect answers
-   </td>
-        <td>
-${inCorrectAnswers}
-        </td>
-    </tr>
-<tr>
-    <td>
-        Procentowy wynik
+    </c:forEach>
 
-    </td>
-    <td>
-  ${examScore}
 
-    </td>
-    <td>
 
-        <!-- Wyświetlanie ilości poprawnych i niepoprawnych odpowiedzi na exam summary-->
-
-      <!--  Ilość odpowiedzi do wyświetlenia na exam summary powinny być zgodne z tym co użytkownik uzyskał podczas testu.-->
-
-    </td>
-
-</tr>
 </table>
-<a class="btn btn-success" href="${examsURL}">wroc do listy</a>
 </body>
 </html>

@@ -56,7 +56,7 @@ QuestionService questionService;
 
         Question question=questionService.nextQuestion(questionId,examId);
         if(question==null){
-            model.addAttribute("examId", examId);
+            redirectAttributes.addFlashAttribute("examId", examId);
             return "redirect:/result";//24.05.2016
         }
         return "redirect:/question/"+question.getId();
